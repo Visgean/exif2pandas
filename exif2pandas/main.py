@@ -47,10 +47,18 @@ def main():
         df.to_sql('photos', con=engine)
 
     if args.feather:
+        # See https://github.com/pandas-dev/pandas/issues/21228
+        # in short we need to interpret all "object" columns as text
+        converted_pd = df.astype({
+            column: str
+            for column, dtype in df.dtypes.iteritems()
+            if str(dtype) == 'object'
+        })
+
         feather_file = Path(args.feather).resolve()
         if feather_file.exists():
             feather_file.unlink()
-        df.to_feather(feather_file)
+        converted_pd.to_feather(feather_file)
 
     if args.excel:
         excel_file = Path(args.excel).resolve()
