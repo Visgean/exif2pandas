@@ -55,8 +55,10 @@ def clean_exif_data(path, data, ignore_keys=IGNORE_STARTSWITH) -> dict:
                         cleaned_val.num / cleaned_val.den
                         if cleaned_val.den != 0 else 0.0
                     )
+                    cleaned_val = tag.printable
             else:
                 cleaned_val = tag.printable
+
             cleaned_data[slugify(key)] = cleaned_val
 
     return cleaned_data

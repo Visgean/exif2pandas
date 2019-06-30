@@ -30,7 +30,6 @@ setup(
         'exifread',
         'pandas',
         'python-slugify',
-
     ],
     entry_points={
         'console_scripts': [
