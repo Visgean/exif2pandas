@@ -74,6 +74,7 @@ The following is an example of columns that are generated - some cameras might i
 
 ## Custom fields:
 
+- all the columns ending with ``-float`` are evaluated fractions 
 - ``cleaned_date`` - this is original date - ignores date set by editors..
 - ``cleaned_latitude`` - converted latitude to GPS style, the algorithm is not very precise as far as I know
 - ``cleaned_longitude``- longitude
