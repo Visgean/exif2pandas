@@ -1,3 +1,2 @@
-# exif2sql
+# Extract EXIF to pandas / SQL 
 
-Generate sql database with exif data

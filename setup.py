@@ -9,16 +9,16 @@ except ImportError:
 
 
 setup(
-    name='exif2sql',
+    name='exif2pandas',
     version='1.0',
     description="Generate sql database with exif data.",
     author="Visgean",
     author_email='visgean@gmail.com',
-    url='https://github.com/visgean/exif2sql',
+    url='https://github.com/visgean/exif2pandas',
     packages=[
-        'exif2sql',
+        'exif2pandas',
     ],
-    package_dir={'exif2sql': 'exif2sql'},
+    package_dir={'exif2pandas': 'exif2pandas'},
     license="MIT",
     keywords='exif sql',
     classifiers=[
@@ -33,7 +33,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'exif2sql = exif2sql.main:main'
+            'exif2pandas = exif2pandas.main:main'
         ]
     },
 )

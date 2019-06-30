@@ -3,7 +3,6 @@
 from pathlib import Path
 import argparse
 import utils
-from clean import clean_all
 
 parser = argparse.ArgumentParser(description="Generate sql database with exif data.")
 parser.add_argument('picture_folders', nargs='+', help='Folders with the images')
@@ -18,8 +17,6 @@ def main():
     args = parser.parse_args()
 
     df = utils.get_panda_dataframe([Path(f).resolve() for f in args.picture_folders])
-    print(df)
-
 
 
 

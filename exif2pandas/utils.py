@@ -2,13 +2,14 @@ import pandas as pd
 import exifread
 import os
 
-from datetime import datetime
 from pathlib import Path
 from typing import List
 from multiprocessing import Pool
-from clean import clean_all
+from clean import clean_exif_data
 
 picture_globs = ['*.jpg', '*.jpeg', '*.png', '*.JPG', '*.JPEG', '*.PNG']
+
+PROCESSES_DEFAULT = 5
 
 
 def get_extension(filename):
@@ -23,30 +24,20 @@ def get_pictures(directory: Path):
     return pics
 
 
-def get_exif(path: Path):
-    # try:
-    # noinspection PyTypeChecker
+def get_exif(path):
     with open(path, 'rb') as f:
         return path, exifread.process_file(f)
-    # except:
-    #     return
 
 
-def multiprocess_extract_exif(fnames: List[Path], processes=5):
+def multiprocess_extract_exif(fnames: List[Path], processes=PROCESSES_DEFAULT):
     with Pool(processes) as pool:
         return pool.map(get_exif, fnames)
 
 
-def parse_date(exif_info):
-    if not exif_info:
-        return
-    date = exif_info.get('Image DateTime')
-    if not date:
-        return
-    try:
-        return datetime.strptime(str(date.values), '%Y:%m:%d %H:%M:%S')
-    except ValueError:
-        return
+def clean_all(exif_with_filenames, processes=PROCESSES_DEFAULT):
+    with Pool(processes) as pool:
+        return pool.map(clean_exif_data, exif_with_filenames)
+
 
 def get_panda_dataframe(folder_names):
     pics_filenames = []
@@ -57,4 +48,3 @@ def get_panda_dataframe(folder_names):
     cleaned_data = clean_all(multiprocess_extract_exif(pics_filenames))
 
     return pd.DataFrame(cleaned_data)
-
