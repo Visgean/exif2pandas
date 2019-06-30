@@ -28,6 +28,7 @@ setup(
     ],
     install_requires=[
         'exifread',
+        'pandas'
 
     ],
     entry_points={

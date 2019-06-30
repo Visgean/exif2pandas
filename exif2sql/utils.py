@@ -1,13 +1,15 @@
-#!/usr/bin/env python3
-
-
 from datetime import datetime
 from pathlib import Path
+from typing import List
 
 import exifread
 import os
 
+from multiprocessing import Pool
+
+
 picture_globs = ['*.jpg', '*.jpeg', '*.png', '*.JPG', '*.JPEG', '*.PNG']
+
 
 def get_extension(filename):
     filename, file_extension = os.path.splitext(filename)
@@ -21,12 +23,19 @@ def get_pictures(directory: Path):
     return pics
 
 
-def get_exif(filename):
-    try:
-        with open(filename, 'rb') as f:
-            return exifread.process_file(f)
-    except:
-        return
+def get_exif(path: Path):
+    # try:
+    # noinspection PyTypeChecker
+    with open(path, 'rb') as f:
+        return path, exifread.process_file(f)
+    # except:
+    #     return
+
+
+def multiprocess_extract_exif(fnames: List[Path], processes=5):
+    with Pool(processes) as pool:
+        return pool.map(get_exif, fnames)
+
 
 
 def parse_date(exif_info):
