@@ -45,10 +45,13 @@ def clean_exif_data(filename_exif_tuple, ignore_keys=IGNORE_STARTSWITH) -> dict:
 
     for key, tag in data.items():
         if not any([key.startswith(prefix) for prefix in ignore_keys]):
-            if len(tag.values) == 1:
+            if tag and tag.values and len(tag.values) == 1:
                 cleaned_val = tag.values[0]
                 if isinstance(cleaned_val, Ratio):
-                    cleaned_data[f'{key}_float'] = cleaned_val.num / cleaned_val.den if cleaned_val.den != 0 else 0.0
+                    cleaned_data[f'{key}_float'] = (
+                        cleaned_val.num / cleaned_val.den
+                        if cleaned_val.den != 0 else 0.0
+                    )
             else:
                 cleaned_val = tag.printable
             cleaned_data[key] = cleaned_val
