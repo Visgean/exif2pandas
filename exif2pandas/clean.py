@@ -1,8 +1,8 @@
-from datetime import datetime
 import os
 
+from datetime import datetime
+from typing import Optional
 from exifread import Ratio
-
 from gps_utils import get_exif_location
 
 IGNORE_STARTSWITH = (
@@ -16,22 +16,24 @@ IGNORE_STARTSWITH = (
 )
 
 
-def parse_exif_date(dt) -> datetime:
-    return datetime.strptime(str(dt.values), '%Y:%m:%d %H:%M:%S')
+def parse_exif_date(dt) -> Optional[datetime]:
+    try:
+        return datetime.strptime(str(dt.values), '%Y:%m:%d %H:%M:%S')
+    except ValueError:
+        return None
 
 
-def parse_date(exif_info):
+def parse_date(exif_info) -> Optional[datetime]:
     if 'Image DateTimeOriginal' in exif_info:
         return parse_exif_date(exif_info['Image DateTimeOriginal'])
     if 'Image DateTime' in exif_info:
         return parse_exif_date(exif_info['Image DateTime'])
 
 
-def clean_exif_data(filename_exif_tuple, ignore_keys=IGNORE_STARTSWITH) -> dict:
+def clean_exif_data(path, data, ignore_keys=IGNORE_STARTSWITH) -> dict:
     """
     Cleans exif data for each picture
     """
-    path, data = filename_exif_tuple
     lat, lon = get_exif_location(data)
     size = os.path.getsize(path) / 1024 ** 2
 

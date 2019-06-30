@@ -26,25 +26,19 @@ def get_pictures(directory: Path):
 
 def get_exif(path):
     with open(path, 'rb') as f:
-        return path, exifread.process_file(f)
+        return clean_exif_data(path, exifread.process_file(f))
 
 
-def multiprocess_extract_exif(fnames: List[Path], processes=PROCESSES_DEFAULT):
+def multiprocess_extract_exif(fnames: List[Path], processes: int):
     with Pool(processes) as pool:
         return pool.map(get_exif, fnames)
 
 
-def clean_all(exif_with_filenames, processes=PROCESSES_DEFAULT):
-    with Pool(processes) as pool:
-        return pool.map(clean_exif_data, exif_with_filenames)
-
-
-def get_panda_dataframe(folder_names):
+def get_panda_df(folder_names, processes=PROCESSES_DEFAULT):
     pics_filenames = []
     for folder in folder_names:
         abs_path = Path(folder).resolve()
         pics_filenames.extend(get_pictures(abs_path))
 
-    cleaned_data = clean_all(multiprocess_extract_exif(pics_filenames))
-
+    cleaned_data = multiprocess_extract_exif(pics_filenames, processes)
     return pd.DataFrame(cleaned_data)
