@@ -3,8 +3,9 @@ import os
 from datetime import datetime
 from typing import Optional
 from exifread import Ratio
-from gps_utils import get_exif_location
 from slugify import slugify
+
+from .gps_utils import get_exif_location
 
 IGNORE_STARTSWITH = (
     'MakerNote Tag',

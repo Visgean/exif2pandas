@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
+import argparse
 
 from pathlib import Path
-import argparse
-import utils
-from sqlalchemy import create_engine
+from . import utils
 
 parser = argparse.ArgumentParser(description="Generate sql database with exif data.")
 parser.add_argument('picture_folders', nargs='+', help='Folders with the images')
@@ -40,6 +39,8 @@ def main():
     )
 
     if args.sqlite:
+        from sqlalchemy import create_engine
+
         sql_file = Path(args.sqlite).resolve()
         if sql_file.exists():
             sql_file.unlink()

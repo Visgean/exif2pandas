@@ -7,11 +7,18 @@ try:
 except ImportError:
     from distutils.core import setup
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
 
 setup(
     name='exif2pandas',
-    version='1.0',
+    version='1.3',
+
     description="Extract EXIF to pandas / SQL / Excel / Feather",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+
     author="Visgean",
     author_email='visgean@gmail.com',
     url='https://github.com/visgean/exif2pandas',
