@@ -34,4 +34,6 @@ def get_exif_location(exif_data):
         lon = convert_to_degress(gps_longitude)
         if gps_longitude_ref.values[0] != 'E':
             lon = round(0 - lon, 6)
-    return lat, lon
+        return lat, lon
+
+    return None, None

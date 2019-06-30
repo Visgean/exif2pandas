@@ -1,12 +1,12 @@
-from datetime import datetime
-from pathlib import Path
-from typing import List
-
+import pandas as pd
 import exifread
 import os
 
+from datetime import datetime
+from pathlib import Path
+from typing import List
 from multiprocessing import Pool
-
+from clean import clean_all
 
 picture_globs = ['*.jpg', '*.jpeg', '*.png', '*.JPG', '*.JPEG', '*.PNG']
 
@@ -37,7 +37,6 @@ def multiprocess_extract_exif(fnames: List[Path], processes=5):
         return pool.map(get_exif, fnames)
 
 
-
 def parse_date(exif_info):
     if not exif_info:
         return
@@ -48,3 +47,14 @@ def parse_date(exif_info):
         return datetime.strptime(str(date.values), '%Y:%m:%d %H:%M:%S')
     except ValueError:
         return
+
+def get_panda_dataframe(folder_names):
+    pics_filenames = []
+    for folder in folder_names:
+        abs_path = Path(folder).resolve()
+        pics_filenames.extend(get_pictures(abs_path))
+
+    cleaned_data = clean_all(multiprocess_extract_exif(pics_filenames))
+
+    return pd.DataFrame(cleaned_data)
+

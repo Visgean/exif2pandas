@@ -17,15 +17,8 @@ parser.add_argument(
 def main():
     args = parser.parse_args()
 
-    pics_filenames = []
-    for folder in args.picture_folders:
-        abs_path = Path(folder).resolve()
-        pics_filenames.extend(utils.get_pictures(abs_path))
-
-    print("Located", len(pics_filenames), "pictures.")
-
-    cleaned_data = clean_all(utils.multiprocess_extract_exif(pics_filenames))
-    print(cleaned_data[0].keys())
+    df = utils.get_panda_dataframe([Path(f).resolve() for f in args.picture_folders])
+    print(df)
 
 
 
