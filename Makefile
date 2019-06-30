@@ -24,9 +24,12 @@ clean-pyc:
 	find . -name '*~' -exec rm -f {} +
 	find . -name '__pycache__' -exec rm -fr {} +
 
+twine: clean
+	python3 -m pip install --upgrade twine
+
 release: clean
-	python3 setup.py sdist upload
-	python3 setup.py bdist_wheel upload
+	python3 setup.py sdist
+	python3 -m twine upload dist/*
 
 dist: clean
 	python3 setup.py sdist
