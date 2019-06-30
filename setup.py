@@ -11,7 +11,7 @@ except ImportError:
 setup(
     name='exif2pandas',
     version='1.0',
-    description="Generate sql database with exif data.",
+    description="Extract EXIF to pandas / SQL / Excel / Feather",
     author="Visgean",
     author_email='visgean@gmail.com',
     url='https://github.com/visgean/exif2pandas',

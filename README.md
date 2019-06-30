@@ -83,55 +83,54 @@ The following is an example of columns that are generated - some cameras might i
 
 ## Exif fields:
 ```
-    exif-aperturevalue exif-aperturevalue-float exif-bodyserialnumber exif-brightnessvalue 
-    exif-brightnessvalue-float exif-colorspace exif-componentsconfiguration exif-compressedbitsperpixel 
-    exif-compressedbitsperpixel-float exif-customrendered exif-datetimedigitized exif-datetimeoriginal 
-    exif-digitalzoomratio exif-digitalzoomratio-float exif-exifimagelength exif-exifimagewidth 
-    exif-exifversion exif-exposurebiasvalue exif-exposurebiasvalue-float exif-exposuremode 
-    exif-exposureprogram exif-exposuretime exif-exposuretime-float exif-filesource exif-flash 
-    exif-flashpixversion exif-fnumber exif-fnumber-float exif-focallength exif-focallength-float 
-    exif-focallengthin35mmfilm exif-focalplaneresolutionunit exif-focalplanexresolution 
-    exif-focalplanexresolution-float exif-focalplaneyresolution exif-focalplaneyresolution-float 
-    exif-interoperabilityoffset exif-isospeedratings exif-lensmake exif-lensmodel exif-lensserialnumber 
-    exif-lensspecification exif-lightsource exif-maxaperturevalue exif-maxaperturevalue-float 
-    exif-meteringmode exif-scenecapturetype exif-scenetype exif-sensingmethod exif-sensitivitytype 
-    exif-sharpness exif-shutterspeedvalue exif-shutterspeedvalue-float exif-subjectarea 
-    exif-subjectdistancerange exif-subsectime exif-subsectimedigitized exif-subsectimeoriginal 
-    exif-usercomment exif-whitebalance
+exif-aperturevalue exif-aperturevalue-float exif-bodyserialnumber exif-brightnessvalue 
+exif-brightnessvalue-float exif-colorspace exif-componentsconfiguration exif-compressedbitsperpixel 
+exif-compressedbitsperpixel-float exif-customrendered exif-datetimedigitized exif-datetimeoriginal 
+exif-digitalzoomratio exif-digitalzoomratio-float exif-exifimagelength exif-exifimagewidth 
+exif-exifversion exif-exposurebiasvalue exif-exposurebiasvalue-float exif-exposuremode 
+exif-exposureprogram exif-exposuretime exif-exposuretime-float exif-filesource exif-flash 
+exif-flashpixversion exif-fnumber exif-fnumber-float exif-focallength exif-focallength-float 
+exif-focallengthin35mmfilm exif-focalplaneresolutionunit exif-focalplanexresolution 
+exif-focalplanexresolution-float exif-focalplaneyresolution exif-focalplaneyresolution-float 
+exif-interoperabilityoffset exif-isospeedratings exif-lensmake exif-lensmodel exif-lensserialnumber 
+exif-lensspecification exif-lightsource exif-maxaperturevalue exif-maxaperturevalue-float 
+exif-meteringmode exif-scenecapturetype exif-scenetype exif-sensingmethod exif-sensitivitytype 
+exif-sharpness exif-shutterspeedvalue exif-shutterspeedvalue-float exif-subjectarea 
+exif-subjectdistancerange exif-subsectime exif-subsectimedigitized exif-subsectimeoriginal 
+exif-usercomment exif-whitebalance
 ```
 
 ## GPS fields
 
 ```
-    gps-gpsaltitude gps-gpsaltitude-float gps-gpsaltituderef gps-gpsdate gps-gpsdestbearing 
-    gps-gpsdestbearing-float gps-gpsdestbearingref gps-gpsdop gps-gpsdop-float gps-gpsimgdirection 
-    gps-gpsimgdirection-float gps-gpsimgdirectionref gps-gpslatitude gps-gpslatituderef 
-    gps-gpslongitude gps-gpslongituderef gps-gpsmapdatum gps-gpsspeed gps-gpsspeed-float 
-    gps-gpsspeedref gps-gpstimestamp gps-gpsversionid
-
+gps-gpsaltitude gps-gpsaltitude-float gps-gpsaltituderef gps-gpsdate gps-gpsdestbearing 
+gps-gpsdestbearing-float gps-gpsdestbearingref gps-gpsdop gps-gpsdop-float gps-gpsimgdirection 
+gps-gpsimgdirection-float gps-gpsimgdirectionref gps-gpslatitude gps-gpslatituderef 
+gps-gpslongitude gps-gpslongituderef gps-gpsmapdatum gps-gpsspeed gps-gpsspeed-float 
+gps-gpsspeedref gps-gpstimestamp gps-gpsversionid
 ```
 
 ## Image Fields:
 
 ```
-    image-artist image-cfapattern image-cfarepeatpatterndim image-copyright image-datetime 
-    image-datetimeoriginal image-documentname image-exifoffset image-exposuretime 
-    image-exposuretime-float image-fnumber image-fnumber-float image-focallength 
-    image-focallength-float image-gpsinfo image-imagelength image-imagewidth 
-    image-isospeedratings image-make image-model image-orientation image-rating 
-    image-resolutionunit image-sampleformat image-software image-subfiletype 
-    image-xresolution image-xresolution-float image-ycbcrpositioning 
-    image-yresolution-float image-yresolution
+image-artist image-cfapattern image-cfarepeatpatterndim image-copyright image-datetime 
+image-datetimeoriginal image-documentname image-exifoffset image-exposuretime 
+image-exposuretime-float image-fnumber image-fnumber-float image-focallength 
+image-focallength-float image-gpsinfo image-imagelength image-imagewidth 
+image-isospeedratings image-make image-model image-orientation image-rating 
+image-resolutionunit image-sampleformat image-software image-subfiletype 
+image-xresolution image-xresolution-float image-ycbcrpositioning 
+image-yresolution-float image-yresolution
 ```
 
 # Other fields
 
 ```
-    interoperability-interoperabilityindex interoperability-interoperabilityversion
-    makernote-afpointset makernote-blurwarning makernote-colortemperature makernote-exposurecount
-    makernote-exposurewarning makernote-flashmode makernote-flashstrength 
-    makernote-flashstrength-float makernote-focusmode makernote-focuspixel 
-    makernote-focuswarning makernote-hdrimagetype makernote-motororbracket 
-    makernote-noteversion makernote-picturemode makernote-quality makernote-saturation 
-    makernote-sharpness makernote-slowsync makernote-whitebalance makernote-whitebalancefinetune 
+interoperability-interoperabilityindex interoperability-interoperabilityversion
+makernote-afpointset makernote-blurwarning makernote-colortemperature makernote-exposurecount
+makernote-exposurewarning makernote-flashmode makernote-flashstrength 
+makernote-flashstrength-float makernote-focusmode makernote-focuspixel 
+makernote-focuswarning makernote-hdrimagetype makernote-motororbracket 
+makernote-noteversion makernote-picturemode makernote-quality makernote-saturation 
+makernote-sharpness makernote-slowsync makernote-whitebalance makernote-whitebalancefinetune 
 ```
