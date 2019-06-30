@@ -28,7 +28,8 @@ setup(
     ],
     install_requires=[
         'exifread',
-        'pandas'
+        'pandas',
+        'python-slugify',
 
     ],
     entry_points={

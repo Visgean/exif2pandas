@@ -4,6 +4,7 @@ from datetime import datetime
 from typing import Optional
 from exifread import Ratio
 from gps_utils import get_exif_location
+from slugify import slugify
 
 IGNORE_STARTSWITH = (
     'MakerNote Tag',
@@ -50,12 +51,12 @@ def clean_exif_data(path, data, ignore_keys=IGNORE_STARTSWITH) -> dict:
             if tag and tag.values and len(tag.values) == 1:
                 cleaned_val = tag.values[0]
                 if isinstance(cleaned_val, Ratio):
-                    cleaned_data[f'{key}_float'] = (
+                    cleaned_data[slugify(f'{key}-float')] = (
                         cleaned_val.num / cleaned_val.den
                         if cleaned_val.den != 0 else 0.0
                     )
             else:
                 cleaned_val = tag.printable
-            cleaned_data[key] = cleaned_val
+            cleaned_data[slugify(key)] = cleaned_val
 
     return cleaned_data
