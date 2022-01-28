@@ -2,7 +2,7 @@ import os
 
 from datetime import datetime
 from typing import Optional
-from exifread import Ratio
+from fractions import Fraction
 from slugify import slugify
 
 from .gps_utils import get_exif_location
@@ -51,10 +51,10 @@ def clean_exif_data(path, data, ignore_keys=IGNORE_STARTSWITH) -> dict:
         if not any([key.startswith(prefix) for prefix in ignore_keys]):
             if tag and tag.values and len(tag.values) == 1:
                 cleaned_val = tag.values[0]
-                if isinstance(cleaned_val, Ratio):
+                if isinstance(cleaned_val, Fraction):
                     cleaned_data[slugify(f'{key}-float')] = (
-                        cleaned_val.num / cleaned_val.den
-                        if cleaned_val.den != 0 else 0.0
+                        cleaned_val.numerator / cleaned_val.denominator
+                        if cleaned_val.denominator != 0 else 0.0
                     )
                     cleaned_val = tag.printable
             else:
