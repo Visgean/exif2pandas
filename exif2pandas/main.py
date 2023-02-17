@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 import argparse
 
+import pandas
+import pandas as pd
+
 from pathlib import Path
 from . import utils
 
@@ -22,6 +25,11 @@ parser.add_argument(
     help='Output the data frame to excel (this will override existing file!)',
 )
 
+parser.add_argument(
+    '-a', '--avro',
+    help='Output the data frame to avro file',
+)
+
 
 parser.add_argument(
     '-p', '--processes',
@@ -33,6 +41,32 @@ parser.add_argument(
 
 def main():
     args = parser.parse_args()
+
+    if args.feather:
+        existing_df = None
+
+        feather_file = Path(args.feather).resolve()
+        if feather_file.exists():
+            existing_df = pandas.read_feather(feather_file)
+            print('Using existing feather file')
+
+        df = utils.get_panda_df(
+            [Path(f).resolve() for f in args.picture_folders],
+            processes=args.processes,
+            existing_df=existing_df
+        )
+
+        # See https://github.com/pandas-dev/pandas/issues/21228
+        # in short we need to interpret all "object" columns as text
+        converted_pd = df.astype({
+            column: str
+            for column, dtype in df.dtypes.iteritems()
+            if str(dtype) == 'object'
+        })
+        converted_pd.to_feather(feather_file)
+        return
+
+
     df = utils.get_panda_df(
         [Path(f).resolve() for f in args.picture_folders],
         processes=args.processes
@@ -47,19 +81,6 @@ def main():
         engine = create_engine(f'sqlite:///{sql_file}', echo=False)
         df.to_sql('photos', con=engine)
 
-    if args.feather:
-        # See https://github.com/pandas-dev/pandas/issues/21228
-        # in short we need to interpret all "object" columns as text
-        converted_pd = df.astype({
-            column: str
-            for column, dtype in df.dtypes.iteritems()
-            if str(dtype) == 'object'
-        })
-
-        feather_file = Path(args.feather).resolve()
-        if feather_file.exists():
-            feather_file.unlink()
-        converted_pd.to_feather(feather_file)
 
     if args.excel:
         excel_file = Path(args.excel).resolve()
