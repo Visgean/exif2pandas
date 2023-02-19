@@ -16,7 +16,7 @@ def convert_to_degress(value):
     return d + (m / 60.0) + (s / 3600.0)
 
 
-def get_exif_location(exif_data):
+def get_exif_location(path, exif_data):
     """
     Returns the latitude and longitude, if available, from the provided exif_data
     (obtained through get_exif_data above)
@@ -29,14 +29,21 @@ def get_exif_location(exif_data):
     gps_longitude = exif_data.get('GPS GPSLongitude')
     gps_longitude_ref = exif_data.get('GPS GPSLongitudeRef')
 
-    if gps_latitude and gps_latitude_ref and gps_longitude and gps_longitude_ref:
-        lat = convert_to_degress(gps_latitude)
-        if gps_latitude_ref.values[0] != 'N':
-            lat = round(0 - lat, 6)
+    try:
+        if len(gps_latitude.values) > 0 and \
+           len(gps_latitude_ref.values) > 0 and \
+           len(gps_longitude.values) > 0 and \
+           len(gps_longitude_ref.values) > 0:
 
-        lon = convert_to_degress(gps_longitude)
-        if gps_longitude_ref.values[0] != 'E':
-            lon = round(0 - lon, 6)
-        return lat, lon
+            lat = convert_to_degress(gps_latitude)
+            if gps_latitude_ref.values[0] != 'N':
+                lat = round(0 - lat, 6)
 
-    return None, None
+            lon = convert_to_degress(gps_longitude)
+            if gps_longitude_ref.values[0] != 'E':
+                lon = round(0 - lon, 6)
+
+    except IndexError:
+        print(f"Location data not valid: {path}")
+
+    return lat, lon

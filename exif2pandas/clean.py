@@ -36,7 +36,7 @@ def clean_exif_data(path, data, ignore_keys=IGNORE_STARTSWITH) -> dict:
     """
     Cleans exif data for each picture
     """
-    lat, lon = get_exif_location(data)
+    lat, lon = get_exif_location(path, data)
     size = os.path.getsize(path) / 1024 ** 2
 
     cleaned_data = {
