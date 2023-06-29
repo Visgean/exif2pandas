@@ -1,5 +1,7 @@
 # Extract EXIF to pandas / SQL / Excel / Feather
 
+Scans recursively your photo library and extracts EXIF data per file to several data formats.
+
 Extracts:
 
 - file size 
