@@ -21,21 +21,18 @@ def get_exif_location(exif_data):
     Returns the latitude and longitude, if available, from the provided exif_data
     (obtained through get_exif_data above)
     """
-    lat = None
-    lon = None
-
-    gps_latitude = exif_data.get('GPS GPSLatitude')
-    gps_latitude_ref = exif_data.get('GPS GPSLatitudeRef')
-    gps_longitude = exif_data.get('GPS GPSLongitude')
-    gps_longitude_ref = exif_data.get('GPS GPSLongitudeRef')
+    gps_latitude = exif_data.get("GPS GPSLatitude")
+    gps_latitude_ref = exif_data.get("GPS GPSLatitudeRef")
+    gps_longitude = exif_data.get("GPS GPSLongitude")
+    gps_longitude_ref = exif_data.get("GPS GPSLongitudeRef")
 
     if gps_latitude and gps_latitude_ref and gps_longitude and gps_longitude_ref:
         lat = convert_to_degress(gps_latitude)
-        if gps_latitude_ref.values[0] != 'N':
+        if gps_latitude_ref.values[0] != "N":
             lat = round(0 - lat, 6)
 
         lon = convert_to_degress(gps_longitude)
-        if gps_longitude_ref.values[0] != 'E':
+        if gps_longitude_ref.values[0] != "E":
             lon = round(0 - lon, 6)
         return lat, lon
 

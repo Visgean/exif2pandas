@@ -18,16 +18,36 @@ and anything else that [Pandas supports](https://pandas.pydata.org/pandas-docs/s
 ## Installation
 
 ```
-    $ pip install exif2pandas --user
+    $ pip3 install exif2pandas --user
 ```
 
 To export the dataframe you will need one of these modules:
 
- - SQLite: ``pip install --user SQLAlchemy`` 
- - Feather: ``pip install --user pyarrow`` 
- - Excel: ``pip install --user xlsxwriter``
+ - SQLite: ``pip3 install --user SQLAlchemy`` 
+ - Feather: ``pip3 install --user pyarrow`` 
+ - Excel: ``pip3 install --user xlsxwriter``
 
-# Usage
+# Python module usage:
+
+```python
+from exif2pandas import extract
+from pathlib import Path
+
+
+df = extract.extract_feather(
+    feather_path=Path('photos.feather').resolve(),
+    pictures_root=[
+        Path('/Users/visgean/Dropbox/Photos').resolve(),
+    ],
+    processes=5
+)
+
+
+```
+
+
+
+# Command line usage:
 
 ```
 usage: exif2pandas [-h] [-s SQLITE] [-f FEATHER] [-e EXCEL] [-p PROCESSES]
