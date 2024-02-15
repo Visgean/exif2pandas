@@ -13,7 +13,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="exif2pandas",
-    version="2.0",
+    version="2.1",
     description="Extract EXIF to pandas / SQL / Excel / Feather",
     long_description=long_description,
     long_description_content_type="text/markdown",

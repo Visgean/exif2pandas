@@ -8,8 +8,7 @@ from typing import List
 from multiprocessing import Pool
 from .clean import clean_exif_data
 
-
-picture_globs = ["*.jpg", "*.jpeg", "*.png", "*.JPG", "*.JPEG", "*.PNG"]
+picture_globs = ["*.jpg", "*.jpeg", "*.png", "*.JPG", "*.JPEG", "*.PNG", "*.heic", "*.HEIC", "*.HEIF", "*.heif"]
 
 PROCESSES_DEFAULT = 5
 
